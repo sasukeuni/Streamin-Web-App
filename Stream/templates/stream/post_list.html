@@ -2,33 +2,28 @@
 
 <head>
     <title>Django Girls blog</title>
+    <style>
+        a:visited{
+            color:darkorchid
+        }
+        a{
+            color:indigo
+        }
+    </style>
 </head>
 
 <body>
+    {% for post in posts %}
     <div>
+
         <h1>
-            <a href="">Django Girls Blog</a>
+            <a href="">{{ post.title }}</a>
         </h1>
+        <p>published: {{ post.published_date }}</p>
+        <p>{{ post.text|safe }}</p>
+        <hr style="border-color:blueviolet">
     </div>
-
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2>
-            <a href="">My first post</a>
-        </h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida
-            at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-            sit amet risus.</p>
-    </div>
-
-    <div>
-        <p>published: 14.06.2014, 12:14</p>
-        <h2>
-            <a href="">My second post</a>
-        </h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida
-            at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </div>
+    {% endfor %}
 </body>
 
 </html>
