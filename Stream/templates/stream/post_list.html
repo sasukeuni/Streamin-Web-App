@@ -7,7 +7,17 @@
             color:darkorchid
         }
         a{
-            color:indigo
+            color:#b19dd8
+        }
+        div{
+            margin-left: 5%
+        }
+        p{
+            margin-left: 5%
+        }
+        body{
+            background-color:#19171c;
+            color: #cbc8d0;
         }
     </style>
 </head>
@@ -21,8 +31,8 @@
         </h1>
         <p>published: {{ post.published_date }}</p>
         <p>{{ post.text|safe }}</p>
-        <hr style="border-color:blueviolet">
     </div>
+    <hr style="border-color:blueviolet">
     {% endfor %}
 </body>
 
