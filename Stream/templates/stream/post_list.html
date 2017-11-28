@@ -1,39 +1,102 @@
 <html>
 
 <head>
-    <title>Django Girls blog</title>
+    <title>Twitch feed of Sasukeuni</title>
+    <link rel="shortcut icon" href="https://media-elerium.cursecdn.com/avatars/110/961/636386569336368151.ico">
     <style>
-        a:visited{
-            color:darkorchid
+        a:visited {
+            color: darkorchid
         }
-        a{
-            color:#b19dd8
+
+        a {
+            color: #b19dd8;
         }
-        div{
-            margin-left: 5%
+
+        h3 a {
+            text-decoration: none
         }
-        p{
-            margin-left: 5%
+        h3{
+            text-align: center;
         }
-        body{
-            background-color:#19171c;
+        div {
+            margin-left: 5%;
+            margin-right: 5%
+        }
+
+
+
+        body {
+            background-color: #19171c;
             color: #cbc8d0;
+        }
+
+        #entry {
+            text-align: center;
+        }
+
+        #twitch-embed {
+            text-align: center;
+        }
+
+        iframe {
+            height: 50%;
+            width: 85%
         }
     </style>
 </head>
 
 <body>
-    {% for post in posts %}
-    <div>
+    <div id="directo">
+        <h1 style="text-align:center">Este es mi directo o el de algún conocido mío</h1>
+        <!-- Add a placeholder for the Twitch embed -->
+        <div id="twitch-embed"></div>
 
-        <h1>
-            <a href="">{{ post.title }}</a>
-        </h1>
-        <p>published: {{ post.published_date }}</p>
-        <p>{{ post.text|safe }}</p>
+        <!-- Load the Twitch embed script -->
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+        <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+        <script type="text/javascript">
+            var embed = new Twitch.Embed("twitch-embed", {
+                width: "85%",
+                height: 480,
+                autoplay: false,
+                theme: "dark",
+                playsinline: true,
+                channel: "sasukeuni"
+            });
+        </script>
+        <h3>Si quieres contactar conmigo puedes usar los siguientes metodos:
+            <a href="https://twitch.tv/sasukeuni">
+                <img src="https://media-elerium.cursecdn.com/avatars/110/961/636386569336368151.ico" width="16px">
+            </a>
+            <a href="https://twitter.com/sasukeunai">
+                <img src="https://abs.twimg.com/favicons/win8-tile-144.png" width="16px">
+            </a>
+            <a href="https://www.facebook.com/sasukeuniST/">
+                <img src="https://www.facebook.com/rsrc.php/yl/r/H3nktOa7ZMg.ico" width="16px">
+            </a>
+            <a href="https://plus.google.com/+SasukeuniUnai">
+                <img src="https://ssl.gstatic.com/images/branding/product/ico/google_plus_alldp.ico" width="16px">
+            </a>
+            <a href="https://www.youtube.com/c/sasukeuniunai">
+                <img src="https://www.youtube.com/yts/img/favicon-vfl8qSV2F.ico" width="16px">
+            </a>
+            <a href="mailto:sasukeuni@gmail.com">
+                <img src="https://ssl.gstatic.com/ui/v1/icons/mail/images/favicon5.ico" width="16px">
+            </a>
+        </h3>
     </div>
-    <hr style="border-color:blueviolet">
-    {% endfor %}
+    <div id="entry">
+        <h1 style="text-align:center">Aquí encontrarás las retansmisiones anteriores</h1>
+        {% for entry in feeds.entries %}
+        <hr style="border-color:blueviolet">
+        <a href="{{entry.link}}">{{entry.title}}</a>
+        <p>{{entry.published}}</p>
+        <iframe src="https://player.twitch.tv/?autoplay=false&video={{entry.id}}" frameborder=0></iframe>
+        <br /> {% endfor %}
+    </div>
+
+
 </body>
 
 </html>

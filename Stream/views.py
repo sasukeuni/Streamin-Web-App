@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.utils import timezone
 # Create your views here.
 from .models import Post
-
+import feedparser
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'stream/post_list.html', {'posts': posts})
+    feeds = feedparser.parse('https://twitchrss.appspot.com/vod/sasukeuni')
+    return render(request, 'stream/post_list.html', {'feeds': feeds})
